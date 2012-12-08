@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div id="message"></div>
+
+<script type="text/javascript">
+    function openSSEConnection() {
+        var pushSource = new EventSource( '@{Application.sse()}' )
+        pushSource.onmessage = function ( event ) {
+            var data = event.data
+            console.log('Received sse : ' + data)
+            $('#message').html(data)
+        }
+    }
+    $(document).ready(function () {
+        setTimeout(openSSEConnection,400)
+    })
+</script>

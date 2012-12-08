@@ -1,0 +1,12 @@
+# Application dependencies
+
+require:
+    - play
+    - com.typesafe.akka -> akka-actor 2.0.4
+
+repositories:
+    - jboss:
+        type: iBiblio
+        root: "http://repo.typesafe.com/typesafe/releases/"
+        contains:
+            - com.typesafe.akka -> *
