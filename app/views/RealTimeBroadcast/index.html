@@ -21,7 +21,7 @@
             feed.close()
         }
 
-        feed = new EventSource('/feed?role=${role}&lower=' + min + '&higher=' + max)
+        feed = new EventSource('/feed?role=${role}&lowerBound=' + min + '&higherBound=' + max)
 
         feed.onmessage = function(e) {
             var data = JSON.parse(e.data)

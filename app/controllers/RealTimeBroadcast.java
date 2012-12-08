@@ -18,7 +18,7 @@ public class RealTimeBroadcast extends JIterateeController {
 
     public static final HubEnumerator<Event> hub = Enumerator.broadcast( Streams.events );
 
-    public static final Enumeratee<Event, String> asJson = Enumeratee.map( new Function<Event, String>() {
+    private static final Enumeratee<Event, String> asJson = Enumeratee.map( new Function<Event, String>() {
         @Override
         public String apply(Event o) {
             for (SystemStatus status : caseClassOf(SystemStatus.class, o)) {
@@ -34,7 +34,7 @@ public class RealTimeBroadcast extends JIterateeController {
     public static void feed(String role, int lowerBound, int higherBound) {
         Enumeratee<Event, Event> secure = getSecure(role);
         Enumeratee<Event, Event> inBounds = getInBounds(lowerBound, higherBound);
-        eventSource( Enumerator.feed(Event.class, hub).through(secure).through( asJson ) );
+        eventSource(Enumerator.feed(Event.class, hub).through(secure).through(inBounds).through(asJson));
     }
 
     private static Enumeratee<Event, Event> getInBounds(final int lowerBoundValue, final int higherBoundValue) {
