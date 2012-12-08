@@ -5,6 +5,9 @@
 # Home page
 GET     /                                       Application.index
 
+GET     /rt                         controllers.RealTimeBroadcast.index
+GET     /feed                       controllers.RealTimeBroadcast.feed
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

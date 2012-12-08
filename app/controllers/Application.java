@@ -18,7 +18,6 @@ public class Application extends JIterateeController {
                 return Option.some(System.currentTimeMillis() + "");
             }
         });
-        System.out.println("enumerator 0 : " +enumerator);
         eventSource( enumerator );
     }
 }

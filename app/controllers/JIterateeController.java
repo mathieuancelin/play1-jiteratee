@@ -126,7 +126,6 @@ public abstract class JIterateeController extends Controller {
     protected static <T> void eventSource(final Enumerator<T> enumerator, final StrBuilder<T> builder) {
         final CountDownLatch latch = new CountDownLatch(1);
         final play.libs.F.EventStream<byte[]> chuncks = new play.libs.F.EventStream<byte[]>();
-        System.out.println("enumeartor 2 : " + enumerator);
         enumerator.applyOn(Iteratee.foreach(new UFunction<T>() {
             @Override
             public void invoke(T value) {
@@ -178,7 +177,6 @@ public abstract class JIterateeController extends Controller {
     }
 //
     protected static <T> void eventSource(final Enumerator<T> enumerator) {
-        System.out.println("enumerator 1 : " +  enumerator);
         eventSource(enumerator, new StrBuilder<T>() {
             @Override
             public String build(T value) {

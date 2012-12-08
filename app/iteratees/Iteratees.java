@@ -311,6 +311,26 @@ public class Iteratees {
             }
             return push;
         }
+        public static <T> Enumerator<T> feed(final Class<T> clazz, final Enumerator<T> enumerator) {
+            final PushEnumerator<T> penumerator = Enumerator.unicast(clazz);
+            enumerator.applyOn(Iteratee.foreach(new F.UFunction<T>() {
+                @Override
+                public void invoke(T o) {
+                    penumerator.push(o);
+                }
+            }));
+            return penumerator;
+        }
+        public static <T> Enumerator<T> feed(final Class<T> clazz, final HubEnumerator<T> enumerator) {
+            final PushEnumerator<T> penumerator = Enumerator.unicast(clazz);
+            enumerator.add(Iteratee.foreach(new F.UFunction<T>() {
+                @Override
+                public void invoke(T o) {
+                    penumerator.push(o);
+                }
+            }));
+            return penumerator;
+        }
     }
     public static abstract class Enumeratee<I, O> implements Forward {
         private ActorRef fromEnumerator;
