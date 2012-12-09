@@ -5,8 +5,10 @@
 # Home page
 GET     /                                       Application.index
 
-GET     /rt                         controllers.RealTimeBroadcast.index
+GET     /rt                         controllers.RealTimeBroadcast.index(role:'EMPLOYEE')
+GET     /manager                    controllers.RealTimeBroadcast.index(role:'MANAGER')
 GET     /feed                       controllers.RealTimeBroadcast.feed
+WS      /websocket                  controllers.Application.WSApplication.ws
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

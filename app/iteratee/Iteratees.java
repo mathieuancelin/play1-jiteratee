@@ -15,14 +15,14 @@
  *  under the License.
  */
 
-package iteratees;
+package iteratee;
 
 import akka.actor.*;
 import akka.util.Duration;
-import iteratees.F.Function;
-import iteratees.F.Option;
-import iteratees.F.Promise;
-import iteratees.F.Unit;
+import iteratee.F.Function;
+import iteratee.F.Option;
+import iteratee.F.Promise;
+import iteratee.F.Unit;
 
 import java.io.*;
 import java.math.BigDecimal;

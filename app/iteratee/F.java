@@ -15,7 +15,7 @@
  *  under the License.
  */
 
-package iteratees;
+package iteratee;
 
 import java.io.Serializable;
 import java.util.*;
