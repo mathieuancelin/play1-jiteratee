@@ -24,7 +24,9 @@ public abstract class JIterateesWebsocketController extends WebSocketController 
         final Iteratee<FR, Unit> send = Iteratee.foreach(new Function<FR, Unit>() {
             @Override
             public Unit apply(FR s) {
-                outbound.send(outBuilder.build(s));
+                if (inbound.isOpen()) {
+                    outbound.send(outBuilder.build(s));
+                }
                 return Unit.unit();
             }
         });
